@@ -6,15 +6,18 @@ const form = document.querySelector('form');
 //  FETCH FUNCTIONS
 // ------------------------------------------
 
+function fetchData(url) {
+    return fetch(url)
+      .then(response => response.json())
+  
+  }
+  
 
-fetch('https://dog.ceo/api/breeds/list')
-  .then(response => response.json())
-  .then(data => generateOptions(data.message)) //data returned gives us an array with the name of each breed as a string
+fetchData('https://dog.ceo/api/breeds/list')
+  .then(data => generateOptions(data.message))
 
-fetch('https://dog.ceo/api/breeds/image/random')
-    //.then(response=>console.log(response)) //returns a response object that lets us know the status (pass = 200). The actual content is in the body property. To access the data, need to parse to JSON
-    .then(response => response.json())//returns raw data in json format; returns a promise
-    .then(data => generateImage(data.message)) //console logged just "data" first to take a look at the shape of the object. It has a "message" property with the value of the url I want as a string. 
+fetchData('https://dog.ceo/api/breeds/image/random')
+    .then(data => generateImage(data.message)) 
 
 
 // ------------------------------------------
