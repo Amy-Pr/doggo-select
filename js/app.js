@@ -86,13 +86,15 @@ function postData(e) {
     const name = document.getElementById('name').value;
     const comment = document.getElementById ('comment').value;
 
-    fetch('https://jsonplaceholder.typicode.com/comments', {
+    const config = {
         method: 'POST', //the type of request, not case sensitive but best practice
         headers: {
             'Content-Type': 'application/json'//communicates that the data has been coded with json
         },
         body: JSON.stringify({name: name, comment: comment}) //ES6 can shorten key/values when they are the same {name, comment}
-    })
+    }
+
+    fetch('https://jsonplaceholder.typicode.com/comments', config)
         .then(checkStatus)
         .then(response => response.json())
         .then(data => console.log(data)) //This will get us all of the comments from the server, instead of posting because fetch's default method is "get"
