@@ -14,13 +14,18 @@ function fetchData(url) {
   
   }
   
+Promise.all([
+    fetchData('https://dog.ceo/api/breeds/list'),
+    fetchData('https://dog.ceo/api/breeds/image/random')
+])
+//.then(data => console.log(data)) //This will return an array of two objects, each with a separate message property containing the data we want
+  .then(data => {
+    const breedList = data[0].message;
+    const randomImage = data[1].message;
 
-fetchData('https://dog.ceo/api/breeds/list')
-  .then(data => generateOptions(data.message))
-  
-
-fetchData('https://dog.ceo/api/breeds/image/random')
-    .then(data => generateImage(data.message)) 
+    generateOptions(breedList);
+    generateImage(randomImage);
+  })
 
 
 // ------------------------------------------
