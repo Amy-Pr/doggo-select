@@ -75,8 +75,20 @@ function generateImage(data) { //create a template literal and insert the value 
 
 select.addEventListener('change', fetchBreedImage);
 card.addEventListener('click', fetchBreedImage);
+form.addEventListener('submit', postData);
 
 // ------------------------------------------
 //  POST DATA
 // ------------------------------------------
 
+function postData(e) {
+    e.preventDefault();//cancels the browser's default submit behavior
+    const name = document.getElementById('name').value;
+    const comment = document.getElementById ('comment').value;
+
+    fetch('https://jsonplaceholder.typicode.com/comments')
+        .then(checkStatus)
+        .then(response = response.json())
+        .then(data = console.log(data))
+
+}
